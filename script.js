@@ -5380,21 +5380,31 @@ const samuelWords =
 // console.log(twoSum([3, 4, 23, 5, 60], 10)); //"not found"
 // console.log(twoSum([3, 5, 7, 12, 45], 48)); //[0, 4]
 
-const longestWord = (str) => {
-  const arr = str.split(" ");
-  let longestLength = 0;
-  let longestIndex = null;
+const isValid = (str) => {
+  let arr = [];
 
-  for (let i = 0; i < arr.length; i++) {
-    if (arr[i].length > longestLength) {
-      longestLength = arr[i].length;
-      longestIndex = i;
+  for (let i = 0; i < str.length; i++) {
+    if (str[i] === "(" || str[i] === "[" || str[i] === "{") {
+      arr.push(str[i]);
+    } else if (
+      (str[i] === ")" && arr[arr.length - 1] !== "(") ||
+      (str[i] === "]" && arr[arr.length - 1] !== "[") ||
+      (str[i] === "}" && arr[arr.length - 1] !== "{")
+    ) {
+      return false;
+    } else {
+      arr.pop();
     }
   }
 
-  return arr[longestIndex];
+  console.log(arr);
+
+  return arr.length === 0;
 };
 
-console.log(longestWord("The quick brown fox jumped over the lazy dog")); //// Output: "jumped"
-
-// console.log(longestWord("Hello world")); // Output: "Hello");
+// console.log(isValid("()") );           // true
+// console.log(isValid("()[]{}") );       // true
+// console.log(isValid("(]")  );          // false
+// console.log(isValid("([)]")  );        // false
+// console.log(isValid("{[]}")); // true
+console.log(isValid("{[()]}[]")); // true
