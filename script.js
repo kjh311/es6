@@ -5480,8 +5480,28 @@ const chunkArray = (arr, chunk) => {
   return finalArr;
 };
 
-console.log(chunkArray([1, 2, 3, 4, 5], 2));
+// console.log(chunkArray([1, 2, 3, 4, 5], 2));
 // Output: [[1, 2], [3, 4], [5]]
 
 // console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
 // Output: [[1, 2, 3], [4, 5, 6], [7]]
+
+const arrayIntersection = (arr1, arr2) => {
+  let finalArr = [];
+  let map = {};
+
+  for (let i = 0; i < arr1.length; i++) {
+    map[arr1[i]] = 1;
+  }
+
+  for (let i = 0; i < arr2.length; i++) {
+    if (map[arr2[i]]) {
+      finalArr.push(arr2[i]);
+    }
+  }
+
+  return finalArr;
+};
+
+console.log(arrayIntersection([1, 2, 2, 3, 4], [2, 3, 5]));
+// Output: [2, 3]);
