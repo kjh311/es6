@@ -5407,4 +5407,45 @@ const isValid = (str) => {
 // console.log(isValid("(]")  );          // false
 // console.log(isValid("([)]")  );        // false
 // console.log(isValid("{[]}")); // true
-console.log(isValid("{[()]}[]")); // true
+// console.log(isValid("{[()]}[]")); // true
+
+const firstNonRepeatingChar = (str) => {
+  let map = {};
+
+  for (let i = 0; i < str.length; i++) {
+    map[str[i]] ? map[str[i]]++ : (map[str[i]] = 1);
+  }
+
+  for (let i = 0; i < str.length; i++) {
+    if (map[str[i]] === 1) {
+      return str[i];
+    }
+  }
+
+  return "none";
+};
+
+// console.log(firstNonRepeatingChar("aabbccdeeffg")); // "d"
+// console.log(firstNonRepeatingChar("aabbcc")); // "none"
+// console.log(firstNonRepeatingChar("leetcode")); // "l"
+// console.log(firstNonRepeatingChar("loveleetcode")); // "v"
+
+const findMissingNumber = (arr) => {
+  let sortedArr = arr.sort();
+  console.log(sortedArr);
+  let currentNum = null;
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    currentNum = sortedArr[i];
+    console.log(currentNum);
+    if (currentNum - 1 !== sortedArr[i - 1] && i !== 0) {
+      return currentNum - 1;
+    }
+  }
+
+  return sortedArr[sortedArr.length - 1] + 1;
+};
+
+// console.log(findMissingNumber([3, 0, 1]));      // returns 2
+// console.log(findMissingNumber([0, 1]));         // returns 2
+// console.log(findMissingNumber([9,6,4,2,3,5,7,0,1])); // returns 8
