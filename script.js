@@ -5521,9 +5521,60 @@ const arrayPairSum = (arr, target) => {
   arr.forEach((item) => (map[item] = target - item));
 
   for (const item in map) {
-    return map[item] in map ? true : false;
+    console.log(map[item]);
+    if (map[item] in map) {
+      return true;
+    }
   }
+  return false;
 };
 
-console.log(arrayPairSum([1, 2, 3, 4], 5)); // true (1 + 4 = 5)
+// console.log(arrayPairSum([1, 2, 3, 4], 5)); // true (1 + 4 = 5)
 // console.log(arrayPairSum([1, 2, 3, 4], 8)); // false
+
+const findPeakElement = (arr) => {
+  let finalArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    if (i === 0 && arr[i] > arr[i + 1]) {
+      finalArr.push(i);
+    } else if (
+      i < arr.length - 1 &&
+      arr[i] > arr[i - 1] &&
+      arr[i] > arr[i + 1]
+    ) {
+      finalArr.push(i);
+    } else if (i === arr.length - 1 && arr[i] > arr[i - 1]) {
+      finalArr.push(i);
+    }
+  }
+
+  return finalArr;
+};
+
+// console.log(findPeakElement([1, 3, 20, 4, 1, 0])) // ➞ 2
+// console.log(findPeakElement([10, 20, 15, 2, 23, 90, 67])) // ➞ 1 or 5
+
+const secondLargest = (arr) => {
+  let twoLarge = [null, 0];
+
+  let sortedArr = arr.sort((a, b) => a - b);
+
+  if (sortedArr.length < 2) {
+    return "not found";
+  }
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    if (sortedArr[i] > twoLarge[1]) {
+      twoLarge[0] = twoLarge[1];
+      twoLarge[1] = sortedArr[i];
+    }
+  }
+
+  return twoLarge[0] !== null ? twoLarge[0] : "not found";
+};
+
+// console.log(secondLargest([1, 2, 3, 4, 5])); // ➞ 4
+console.log(secondLargest([10, 10, 9])); // ➞ 9
+console.log(secondLargest([5])); // ➞ "not found"
+// console.log(secondLargest([7, 7, 7]));       // ➞ "not found"
