@@ -5307,15 +5307,14 @@ const samuelWords =
   "Normally, both your asses would be dead as fucking fried chicken, but you happen to pull this shit while I'm in a transitional period so I don't wanna kill you, I wanna help you. But I can't give you this case, it don't belong to me. Besides, I've already been through too much shit this morning over this case to hand it over to your dumb ass.";
 
 // const countWords = (str) => {
-//   return str
-//     .toLowerCase()
-//     .replace(/[^a-z0-0' ]/g, "")
-//     .split(" ")
-//     .reduce((acc, word) => {
-//       acc[word] = (acc[word] || 0) + 1;
-//       return acc;
-//     }, {});
-// };
+// return str
+//   .toLowerCase()
+//   .replace(/[^a-z0-0' ]/g, "")
+//   .split(" ")
+//   .reduce((acc, word) => {
+//     acc[word] = (acc[word] || 0) + 1;
+//     return acc;
+//   }, {});
 
 // console.log(countWords(zombieWords));
 
@@ -5323,20 +5322,58 @@ const samuelWords =
 // let name = age > 10 ? "Pedro" : "George";
 // console.log(name);
 
-const person = {
-  name: "Kevin",
-  age: 46,
-  occupation: "Truck Driver",
+// const person = {
+//   name: "Kevin",
+//   age: 46,
+//   occupation: "Truck Driver",
+// };
+
+// //destructuring
+// const { name, age, occupation, weight = 160 } = person;
+// console.log(name, age, occupation, weight);
+
+// const nums = [1, 2, 3];
+// const [one, two, three, four = 4] = nums;
+// console.log(one, two, three, four);
+
+// //spread operator
+// const person2 = { ...person, name: "Beetlejuice" };
+// console.log(person2);
+
+// const nums2 = [...nums, (five = 5)];
+// console.log(nums2[3]);
+
+// console.log(
+//   nums2.map((num) => {
+//     return num + 1;
+//   })
+// );
+
+// console.log(nums2);
+
+// let numFilter = nums2.filter((num) => {
+//   return num < 3;
+// });
+
+// console.log(numFilter);
+
+const twoSum = (arr, target) => {
+  let map = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    map[arr[i]] = i;
+  }
+
+  for (const key in map) {
+    const partner = target - key;
+
+    if (partner in map && map[key] !== map[partner]) {
+      return [map[key], map[partner]];
+    }
+  }
+  return "not found";
 };
 
-//destructuring
-const { name, age, occupation } = person;
-console.log(name, age, occupation);
-
-const arr = [1, 2, 3, 4];
-const [first, second, third, fourth, fifth = 5] = arr;
-console.log(first, second, third, fourth, fifth);
-
-//spread operator
-const person2 = { ...person, name: "Beetlejuice" };
-console.log(person2);
+console.log(twoSum([1, 2, 5, 15], 20)); //[2,3]
+// console.log(twoSum([3, 4, 23, 5, 60], 10)); //"not found"
+// console.log(twoSum([3, 5, 7, 12, 45], 48)); //[0, 4]
