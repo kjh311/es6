@@ -5496,12 +5496,34 @@ const arrayIntersection = (arr1, arr2) => {
 
   for (let i = 0; i < arr2.length; i++) {
     if (map[arr2[i]]) {
-      finalArr.push(arr2[i]);
+      // finalArr.push(arr2[i]);
+      map[arr2[i]] = 2;
     }
   }
+
+  for (const item in map) {
+    if (map[item] === 2) {
+      finalArr.push(parseInt(item));
+    }
+  }
+
+  console.log(finalArr);
 
   return finalArr;
 };
 
-console.log(arrayIntersection([1, 2, 2, 3, 4], [2, 3, 5]));
+// console.log(arrayIntersection([1, 2, 2, 3, 4], [2, 3, 5, 2]));
 // Output: [2, 3]);
+
+const arrayPairSum = (arr, target) => {
+  let map = {};
+
+  arr.forEach((item) => (map[item] = target - item));
+
+  for (const item in map) {
+    return map[item] in map ? true : false;
+  }
+};
+
+console.log(arrayPairSum([1, 2, 3, 4], 5)); // true (1 + 4 = 5)
+// console.log(arrayPairSum([1, 2, 3, 4], 8)); // false
