@@ -5357,23 +5357,44 @@ const samuelWords =
 
 // console.log(numFilter);
 
-const twoSum = (arr, target) => {
-  let map = {};
+// const twoSum = (arr, target) => {
+//   let map = {}
 
-  for (let i = 0; i < arr.length; i++) {
-    map[arr[i]] = i;
-  }
+//   for(let i = 0; i < arr.length; i++){
+//     map[arr[i]] = i
+//   }
 
-  for (const key in map) {
-    const partner = target - key;
+//   for(const key in map){
+//     const partner = target - key
 
-    if (partner in map && map[key] !== map[partner]) {
-      return [map[key], map[partner]];
-    }
-  }
-  return "not found";
-};
+//     if(partner in map && map[key] !== map[partner]){
+//       return [map[key], map[partner]]
+//     }
+//   }
 
-console.log(twoSum([1, 2, 5, 15], 20)); //[2,3]
+//   return "not found"
+
+// }
+
+// console.log(twoSum([1, 2, 5, 15], 20)); //[2,3]
 // console.log(twoSum([3, 4, 23, 5, 60], 10)); //"not found"
 // console.log(twoSum([3, 5, 7, 12, 45], 48)); //[0, 4]
+
+const longestWord = (str) => {
+  const arr = str.split(" ");
+  let longestLength = 0;
+  let longestIndex = null;
+
+  for (let i = 0; i < arr.length; i++) {
+    if (arr[i].length > longestLength) {
+      longestLength = arr[i].length;
+      longestIndex = i;
+    }
+  }
+
+  return arr[longestIndex];
+};
+
+console.log(longestWord("The quick brown fox jumped over the lazy dog")); //// Output: "jumped"
+
+// console.log(longestWord("Hello world")); // Output: "Hello");
