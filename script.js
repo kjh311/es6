@@ -5468,4 +5468,20 @@ const removeDuplicates = (arr) => {
   return finalArr;
 };
 
-console.log(removeDuplicates([1, 2, 3, 2, 4, 1, 5])); // ➞ [1, 2, 3, 4, 5];
+// console.log(removeDuplicates([1, 2, 3, 2, 4, 1, 5])); // ➞ [1, 2, 3, 4, 5];
+
+const chunkArray = (arr, chunk) => {
+  let finalArr = [];
+
+  for (let i = 0; i < arr.length; i += chunk) {
+    finalArr.push(arr.slice(i, i + chunk));
+  }
+
+  return finalArr;
+};
+
+console.log(chunkArray([1, 2, 3, 4, 5], 2));
+// Output: [[1, 2], [3, 4], [5]]
+
+// console.log(chunkArray([1, 2, 3, 4, 5, 6, 7], 3));
+// Output: [[1, 2, 3], [4, 5, 6], [7]]
