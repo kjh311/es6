@@ -5449,3 +5449,23 @@ const findMissingNumber = (arr) => {
 // console.log(findMissingNumber([3, 0, 1]));      // returns 2
 // console.log(findMissingNumber([0, 1]));         // returns 2
 // console.log(findMissingNumber([9,6,4,2,3,5,7,0,1])); // returns 8
+
+const removeDuplicates = (arr) => {
+  let finalArr = [];
+  let map = {};
+
+  for (let i = 0; i < arr.length; i++) {
+    map[arr[i]] = null;
+  }
+
+  for (let i = 0; i < arr.length; i++) {
+    if (map[arr[i]] === null) {
+      finalArr.push(arr[i]);
+      map[arr[i]] = 1;
+    }
+  }
+
+  return finalArr;
+};
+
+console.log(removeDuplicates([1, 2, 3, 2, 4, 1, 5])); // ➞ [1, 2, 3, 4, 5];
