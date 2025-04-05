@@ -5677,3 +5677,74 @@ const compressString = (str) => {
 // console.log(compressString("aabcccccaaa")); // "a2b1c5a3"
 // console.log(compressString("abc")); // "abc"
 // console.log(compressString("aabbcc")); // "a2b2c2"
+
+const findLongestWord = (str) => {
+  let wordArr = str.split(" ");
+  let longest = "";
+  let maxLength = 0;
+
+  wordArr.forEach((word) => {
+    if (word.length > maxLength) {
+      maxLength = word.length;
+      longest = word;
+    }
+  });
+
+  return longest;
+};
+
+// console.log(findLongestWord("The quick brown fox jumped over the lazy dog"));
+// Output: "jumped";
+
+const isAnagram = (str1, str2) => {
+  function sort(str) {
+    return str
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "")
+      .split("")
+      .sort()
+      .join("");
+  }
+
+  return sort(str1) === sort(str2);
+};
+
+// console.log(isAnagram("listen", "silent")); // true
+// console.log(isAnagram("hello", "world"));   // false
+// console.log(isAnagram("Dormitory", "Dirty room")); // true (ignore spaces & case)
+// console.log(isAnagram("a decimal point", "I'm a dot in place.")); // true (ignore spaces & case)
+
+const groupAnagrams = (arr) => {
+  function sort(str) {
+    return str
+      .toLowerCase()
+      .replace(/[^a-z0-9]/g, "")
+      .split("")
+      .sort()
+      .join("");
+  }
+
+  let map = {};
+
+  const sortedArr = arr.map((word) => {
+    return sort(word);
+  });
+
+  console.log(sortedArr);
+
+  sortedArr.forEach((word, index) => {
+    map[word] ? map[word].push(index) : (map[word] = [1]);
+  });
+  console.log(map);
+};
+
+console.log(
+  groupAnagrams(["listen", "silent", "enlist", "rat", "tar", "art", "hello"])
+);
+/*
+[
+  ["listen", "silent", "enlist"],
+  ["rat", "tar", "art"],
+  ["hello"]
+]
+*/
