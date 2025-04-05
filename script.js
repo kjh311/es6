@@ -5730,17 +5730,18 @@ const groupAnagrams = (arr) => {
     return sort(word);
   });
 
-  console.log(sortedArr);
+  for (let i = 0; i < sortedArr.length; i++) {
+    map[sortedArr[i]]
+      ? map[sortedArr[i]].push(arr[i])
+      : (map[sortedArr[i]] = [arr[i]]);
+  }
 
-  sortedArr.forEach((word, index) => {
-    map[word] ? map[word].push(index) : (map[word] = [1]);
-  });
-  console.log(map);
+  return Object.values(map);
 };
 
-console.log(
-  groupAnagrams(["listen", "silent", "enlist", "rat", "tar", "art", "hello"])
-);
+// console.log(
+//   groupAnagrams(["listen", "silent", "enlist", "rat", "tar", "art", "hello"])
+// );
 /*
 [
   ["listen", "silent", "enlist"],
@@ -5748,3 +5749,134 @@ console.log(
   ["hello"]
 ]
 */
+
+const flattenArray = (arr) => {
+  let finalArr = [];
+
+  console.log(arr.length);
+
+  // for(let i = 0; i < arr.length; i++){
+  //   console.log(i);
+  // }
+
+  console.log(arr[1][1][1]);
+
+  return finalArr;
+};
+
+// console.log(flattenArray([1, [2, [3, 4], 5], 6]));; // [1, 2, 3, 4, 5, 6]
+// console.log(flattenArray([1, [2, [3, [1,2], 4], 5], 6]));; // [1, 2, 3, 4, 5, 6]
+
+const wordCount = (str) =>
+  str
+    .toLowerCase()
+    .match(/[a-z0-9']+/g)
+    .reduce((acc, word) => {
+      acc[word] = (acc[word] || 0) + 1;
+      // acc[word] ? acc[word] ++ : acc[word] = 1
+      return acc;
+    }, {});
+
+// console.log(
+//   wordCount(`Bacon ipsum dolor amet meatloaf venison jerky swine, prosciutto landjaeger fatback beef ribs pancetta short loin rump brisket chicken. Pancetta hamburger spare ribs, kielbasa pork belly ribeye corned beef brisket beef prosciutto filet mignon sirloin. Fatback rump beef salami. T-bone salami filet mignon pork belly chuck spare ribs porchetta drumstick. Ground round short loin shankle pancetta sirloin.
+
+// Meatball swine chislic, pork turducken frankfurter capicola sausage shank. Tri-tip alcatra pork chop bacon turkey ham hock, bresaola venison sirloin short loin. Doner pork belly beef, short ribs bresaola sirloin venison bacon meatball swine tenderloin strip steak. Kevin kielbasa andouille, picanha pork belly sirloin cow chislic. Ball tip t-bone pancetta brisket alcatra cupim biltong boudin swine flank fatback turkey chicken. Short loin salami prosciutto, shank buffalo venison ribeye bresaola. Doner ribeye chuck pork belly jerky.
+
+// Ground round spare ribs doner, kevin pastrami chuck chicken andouille leberkas tongue tri-tip fatback. Hamburger rump porchetta pig, burgdoggen picanha tail filet mignon salami beef. Kevin corned beef pig chicken, meatball frankfurter venison beef doner salami filet mignon jerky landjaeger hamburger bresaola. Strip steak jowl spare ribs prosciutto pork chop sirloin pancetta pastrami meatball tri-tip salami alcatra capicola ground round. Pork filet mignon ham, bresaola ham hock andouille shankle tongue capicola. Alcatra pancetta sausage strip steak leberkas pig filet mignon buffalo shoulder rump pork belly beef ribs turducken. Landjaeger hamburger flank swine short ribs sausage biltong t-bone cow bresaola brisket.
+
+// Pastrami turkey brisket porchetta, meatball ribeye beef ribs corned beef andouille venison. Meatball ribeye leberkas hamburger prosciutto. Spare ribs cow hamburger tenderloin sausage prosciutto drumstick turducken doner shankle chicken boudin frankfurter porchetta turkey. Pork belly porchetta pancetta frankfurter. Pork loin ribeye buffalo sirloin t-bone kielbasa tail cow tenderloin chislic.
+
+// Pork chuck swine, kevin leberkas sausage meatball shank strip steak capicola. Strip steak ball tip pastrami, pork venison tenderloin sausage drumstick prosciutto t-bone andouille. Picanha sausage ribeye, pork chop filet mignon buffalo cupim frankfurter tri-tip turducken pancetta. Pork chop brisket tri-tip ham hock pancetta doner.
+
+// Does your lorem ipsum text long for something a little meatier? Give our generator a try… it’s tasty!`)
+// );
+
+const findMissingNum = (arr) => {
+  const sortedArr = arr.sort((a, b) => a - b);
+  console.log(sortedArr);
+
+  for (let i = 0; i < sortedArr.length; i++) {
+    if (sortedArr[i] + 1 !== sortedArr[i + 1]) {
+      return sortedArr[i] + 1;
+    }
+  }
+};
+
+// console.log(findMissingNum([3, 0, 1])) // ➞ 2
+// console.log(findMissingNum([0, 1]))    // ➞ 2
+// console.log(findMissingNum([9,6,4,2,3,5,7,0,1])) // ➞ 8
+
+var isPalindrome2 = function (x) {
+  let str = String(x);
+  let left = 0;
+  let right = str.length - 1;
+
+  while (left < right) {
+    if (str[left] !== str[right]) {
+      return false;
+    }
+    left++;
+    right--;
+  }
+  return true;
+};
+
+// console.log(isPalindrome2(121)); //true
+// console.log(isPalindrome2(-121)); //false
+// console.log(isPalindrome2(10)); //false
+
+var lengthOfLastWord = function (s) {
+  let arr = s.toLowerCase().match(/[a-z0-9]+/g);
+  return arr[arr.length - 1].length;
+};
+
+// console.log(lengthOfLastWord("   fly me   to   the moon  ")); //4
+// console.log(lengthOfLastWord("Hello World")); //5
+
+let map = new Map();
+map.set("name", "Kevin");
+map.set("age", 46);
+// map.set("lastWord", lengthOfLastWord)
+// console.log(map.get("lastWord")("asdf"));
+console.log(map.has("age"));
+console.log(map.size);
+
+map.forEach((value, key) => {
+  console.log(`${key}: ${value}`);
+});
+// console.log(map.keys);
+
+let myMapArray = [];
+map.forEach((value, key) => {
+  myMapArray.push(`${key}: ${value}`);
+});
+
+console.log(myMapArray);
+
+const myMap = new Map();
+myMap.set("name", "Kevin");
+myMap.set("age", 30);
+myMap.set("isDev", true);
+
+for (const [key, value] of map.entries()) {
+  console.log(`${key}: ${value}`);
+}
+
+const arr = [1, 2, 3, 4, 5, 6, 7, 8];
+
+for (const num of arr) {
+  console.log(num);
+}
+
+const myObj = {
+  name: "Kevin",
+  age: 46,
+};
+
+for (const [key, value] of map.entries()) {
+  console.log(key, value);
+}
+
+for (const item in myObj) {
+  console.log(item, myObj[item]);
+}
