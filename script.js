@@ -5575,6 +5575,105 @@ const secondLargest = (arr) => {
 };
 
 // console.log(secondLargest([1, 2, 3, 4, 5])); // ➞ 4
-console.log(secondLargest([10, 10, 9])); // ➞ 9
-console.log(secondLargest([5])); // ➞ "not found"
+// console.log(secondLargest([10, 10, 9])); // ➞ 9
+// console.log(secondLargest([5])); // ➞ "not found"
 // console.log(secondLargest([7, 7, 7]));       // ➞ "not found"
+
+const findDuplicates = (arr) => {
+  let dups = [];
+  let map = {};
+
+  arr.forEach((item) => {
+    map[item] ? map[item]++ : (map[item] = 1);
+  });
+
+  for (let num in map) {
+    if (map[num] > 1) {
+      dups.push(Number(num));
+    }
+  }
+
+  return dups;
+};
+
+// console.log(findDuplicates([4, 3, 2, 7, 8, 2, 3, 1])); // [2, 3]
+// console.log(findDuplicates([1, 2, 3, 4])) // []
+
+const moveNegativesToEnd = (arr) => {
+  let pos = [];
+  let neg = [];
+
+  arr.forEach((num) => {
+    num > -1 ? pos.push(num) : neg.push(num);
+  });
+
+  return [...pos, ...neg];
+};
+
+// console.log(moveNegativesToEnd([1, -3, 5, -2, 0, -1]));
+// // Expected output: [1, 5, 0, -2, -3, -1]
+
+// console.log(moveNegativesToEnd([-5, -4, 0, 2, 3]));
+// Expected output: [0, 2, 3, -5, -4]
+
+const rotateArray = (arr, rot) => {
+  for (let i = 0; i < rot; i++) {
+    let last = arr.pop();
+    arr.unshift(last);
+  }
+
+  return arr;
+};
+
+// console.log(rotateArray([1, 2, 3, 4, 5], 2));
+// Output: [4, 5, 1, 2, 3]
+
+const reverseWords = (str) => str.split(" ").reverse().join(" ");
+
+// console.log(reverseWords("The quick brown fox"))
+// // Output: "fox brown quick The"
+
+// console.log(reverseWords("Hello World!"))
+// Output: "World! Hello"
+
+const isPalindrome = (str) =>
+  str.toLowerCase().replace(/[^a-z0-9]/g, "") ===
+  str
+    .toLowerCase()
+    .replace(/[^a-z0-9]/g, "")
+    .split("")
+    .reverse()
+    .join("");
+
+// console.log(isPalindrome("A man, a plan, a canal, Panama")); //true
+// console.log(isPalindrome("hello") ); //false
+
+const compressString = (str) => {
+  let multiple = false;
+  let finalArr = [];
+  let count = 1;
+
+  for (let i = 0; i < str.length; i++) {
+    if (i <= str.length - 2 && str[i] === str[i + 1]) {
+      count++;
+      multiple = true;
+    } else if (
+      i <= str.length - 2 &&
+      str[i] !== str[i + 1] &&
+      multiple === true
+    ) {
+      finalArr.push(str[i]);
+      finalArr.push(count);
+      count = 1;
+    } else if (i === str.length - 1 && multiple === true) {
+      finalArr.push(str[i]);
+      finalArr.push(count);
+    }
+  }
+
+  return multiple ? finalArr.join("") : str;
+};
+
+// console.log(compressString("aabcccccaaa")); // "a2b1c5a3"
+// console.log(compressString("abc")); // "abc"
+// console.log(compressString("aabbcc")); // "a2b2c2"
