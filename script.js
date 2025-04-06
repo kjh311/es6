@@ -5899,3 +5899,13 @@ const longestSubstring = (str) => {
 // console.log(longestSubstring("abcabcbb"))  // 3
 // console.log(longestSubstring("bbbbb"))     // 1
 // console.log(longestSubstring("pwwkew"))    // 3
+
+const reverseTheWords = (str) =>
+  str
+    .split(" ")
+    .map((word) => word.split("").reverse().join(""))
+    .join(" ");
+
+// console.log(reverseTheWords("The quick brown fox"));
+
+// "ehT kciuq nworb xof"
