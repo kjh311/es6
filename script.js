@@ -5917,17 +5917,35 @@ const isIsomorphic = (str1, str2) => {};
 // console.log(isIsomorphic("paper", "title")) // true
 
 const interleaveStrings = (str1, str2) => {
-  let returnArr = [];
+  let returnStr = "";
   let max = Math.max(str1.length, str2.length);
 
   for (let i = 0; i < max; i++) {
-    if (i < str1.length) returnArr.push(str1[i]);
-    if (i < str2.length) returnArr.push(str2[i]);
+    if (i < str1.length) returnStr += str1[i];
+    if (i < str2.length) returnStr += str2[i];
   }
 
-  return returnArr.join("");
+  return returnStr;
 };
 
-console.log(interleaveStrings("abc", "123")); // "a1b2c3"
+// console.log(interleaveStrings("abc", "123")); // "a1b2c3"
 // console.log(interleaveStrings("hi", "world"));    // "hwiorld"
 // console.log(interleaveStrings("short", "loooong")); // "slhoooorotng"
+
+const isStrongPassword = (str) =>
+  /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/.test(str);
+
+console.log(isStrongPassword("Password123!")); // true
+// console.log(isStrongPassword("weakpass"))     // false
+// console.log(isStrongPassword("12345678"))     // false
+// console.log(isStrongPassword("NoSpecial1"))   // false
+
+// Has at least 8 characters
+
+// Contains at least one uppercase letter
+
+// Contains at least one lowercase letter
+
+// Contains at least one digit
+
+// Contains at least one special character (like !@#$%^&*())
