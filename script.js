@@ -5833,50 +5833,44 @@ var lengthOfLastWord = function (s) {
 // console.log(lengthOfLastWord("   fly me   to   the moon  ")); //4
 // console.log(lengthOfLastWord("Hello World")); //5
 
-let map = new Map();
-map.set("name", "Kevin");
-map.set("age", 46);
-// map.set("lastWord", lengthOfLastWord)
-// console.log(map.get("lastWord")("asdf"));
-console.log(map.has("age"));
-console.log(map.size);
+const firstUniqueChar = (str) => {
+  let map = str
+    .toLowerCase()
+    .split("")
+    .reduce((acc, letter) => {
+      acc[letter] = (acc[letter] || 0) + 1;
+      return acc;
+    }, {});
 
-map.forEach((value, key) => {
-  console.log(`${key}: ${value}`);
-});
-// console.log(map.keys);
+  for (let i = 0; i < str.length; i++) {
+    if (map[str[i]] === 1) {
+      return str[i];
+    }
+  }
 
-let myMapArray = [];
-map.forEach((value, key) => {
-  myMapArray.push(`${key}: ${value}`);
-});
-
-console.log(myMapArray);
-
-const myMap = new Map();
-myMap.set("name", "Kevin");
-myMap.set("age", 30);
-myMap.set("isDev", true);
-
-for (const [key, value] of map.entries()) {
-  console.log(`${key}: ${value}`);
-}
-
-const arr = [1, 2, 3, 4, 5, 6, 7, 8];
-
-for (const num of arr) {
-  console.log(num);
-}
-
-const myObj = {
-  name: "Kevin",
-  age: 46,
+  return null;
 };
 
-for (const [key, value] of map.entries()) {
-  console.log(key, value);
-}
+// console.log(firstUniqueChar("racecars")); // "e"
+// console.log(firstUniqueChar("aabbcc")) // null
+// console.log(firstUniqueChar("swiss")) // "w"
 
-for (const item in myObj) {
-  console.log(item, myObj[item]);
-}
+const groupAnagrams2 = (words) => {
+  let myMap = new Map();
+
+  words.forEach((item) => {
+    const sortedWord = item.split("").sort().join("");
+    myMap.has(sortedWord)
+      ? myMap.get(sortedWord).push(item)
+      : myMap.set(sortedWord, [item]);
+  });
+
+  return Array.from(myMap.values());
+};
+
+// console.log(groupAnagrams2(["eat", "tea", "tan", "ate", "nat", "bat"]));
+// [
+//   ["eat", "tea", "ate"],
+//   ["tan", "nat"],
+//   ["bat"]
+// ]
