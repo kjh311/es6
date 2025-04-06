@@ -5909,3 +5909,25 @@ const reverseTheWords = (str) =>
 // console.log(reverseTheWords("The quick brown fox"));
 
 // "ehT kciuq nworb xof"
+
+const isIsomorphic = (str1, str2) => {};
+
+// console.log(isIsomorphic("egg", "add")) // true
+// console.log(isIsomorphic("foo", "bar")) // false
+// console.log(isIsomorphic("paper", "title")) // true
+
+const interleaveStrings = (str1, str2) => {
+  let returnArr = [];
+  let max = Math.max(str1.length, str2.length);
+
+  for (let i = 0; i < max; i++) {
+    if (i < str1.length) returnArr.push(str1[i]);
+    if (i < str2.length) returnArr.push(str2[i]);
+  }
+
+  return returnArr.join("");
+};
+
+console.log(interleaveStrings("abc", "123")); // "a1b2c3"
+// console.log(interleaveStrings("hi", "world"));    // "hwiorld"
+// console.log(interleaveStrings("short", "loooong")); // "slhoooorotng"
