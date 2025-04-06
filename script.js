@@ -5874,3 +5874,28 @@ const groupAnagrams2 = (words) => {
 //   ["tan", "nat"],
 //   ["bat"]
 // ]
+
+const longestSubstring = (str) => {
+  let tempLongest = [];
+  let longestStr = "";
+  let map = {};
+
+  for (let i = 0; i < str.length; i++) {
+    if (!map[str[i]]) {
+      map[str[i]] = 1;
+      tempLongest.push(str[i]);
+      if (tempLongest.length > longestStr.length) {
+        longestStr = tempLongest.join("");
+      }
+    } else {
+      map = {};
+      tempLongest = [];
+    }
+  }
+
+  return longestStr.length;
+};
+
+// console.log(longestSubstring("abcabcbb"))  // 3
+// console.log(longestSubstring("bbbbb"))     // 1
+// console.log(longestSubstring("pwwkew"))    // 3
