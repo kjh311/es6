@@ -6030,9 +6030,9 @@ const createCounter = () => {
 
 const filterAvailableProducts = (products, maxPrice) => {
   const filteredProducts = products.filter((item) => {
-    return item.inStock && item.price < maxPrice;
+    return item.inStock && item.price <= maxPrice;
   });
-  console.log(filteredProducts);
+  // console.log(filteredProducts);
 
   return filteredProducts.map((item) => {
     return item.name;
@@ -6050,17 +6050,49 @@ const inventory = [
 ];
 
 // Test Case 1: Max price 200
-const affordableAndAvailable = filterAvailableProducts(inventory, 200);
-console.log(affordableAndAvailable);
-// Expected Output: ['Mouse', 'Monitor', 'Headphones']
-// (Laptop is > 200, Keyboard & Webcam are out of stock, Desk Chair is > 200)
+// const affordableAndAvailable = filterAvailableProducts(inventory, 200);
+// console.log(affordableAndAvailable);
+// // Expected Output: ['Mouse', 'Monitor', 'Headphones']
+// // (Laptop is > 200, Keyboard & Webcam are out of stock, Desk Chair is > 200)
 
-// Test Case 2: Max price 50
-const veryAffordable = filterAvailableProducts(inventory, 50);
-console.log(veryAffordable);
-// Expected Output: ['Mouse']
+// // Test Case 2: Max price 50
+// const veryAffordable = filterAvailableProducts(inventory, 50);
+// console.log(veryAffordable);
+// // Expected Output: ['Mouse']
 
-// Test Case 3: Max price 10 (no products meet criteria)
-const superCheap = filterAvailableProducts(inventory, 10);
-console.log(superCheap);
-// Expected Output: []
+// // Test Case 3: Max price 10 (no products meet criteria)
+// const superCheap = filterAvailableProducts(inventory, 10);
+// console.log(superCheap);
+// // Expected Output: []
+
+const calculateStudentAverages = (students) => {
+  return students.map((student) => {
+    return [
+      "name: " + student.name,
+      "averageGrade: " +
+        student.grades.reduce((acc, grade) => {
+          acc += grade / student.grades.length;
+          return acc;
+        }, 0),
+    ];
+  });
+};
+
+const studentData = [
+  { name: "Alice", grades: [85, 90, 78, 92] },
+  { name: "Bob", grades: [70, 65, 80] },
+  { name: "Charlie", grades: [95, 88] },
+  { name: "Diana", grades: [] }, // Student with no grades
+];
+
+const studentAverages = calculateStudentAverages(studentData);
+console.log(studentAverages);
+/*
+Expected Output:
+[
+  { name: 'Alice', averageGrade: 86.25 },
+  { name: 'Bob', averageGrade: 71.67 }, // Rounded from 71.666...
+  { name: 'Charlie', averageGrade: 91.50 },
+  { name: 'Diana', averageGrade: 0 },
+]
+*/
