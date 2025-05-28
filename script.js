@@ -5935,7 +5935,7 @@ const interleaveStrings = (str1, str2) => {
 const isStrongPassword = (str) =>
   /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*\W).{8,}$/.test(str);
 
-console.log(isStrongPassword("Password123!")); // true
+// console.log(isStrongPassword("Password123!")); // true
 // console.log(isStrongPassword("weakpass"))     // false
 // console.log(isStrongPassword("12345678"))     // false
 // console.log(isStrongPassword("NoSpecial1"))   // false
@@ -5949,3 +5949,39 @@ console.log(isStrongPassword("Password123!")); // true
 // Contains at least one digit
 
 // Contains at least one special character (like !@#$%^&*())
+
+const isPalindrome3 = (str) => {
+  let sort = str.toLowerCase().replace(/[^a-z0-9]/g, "");
+  return sort === sort.split("").reverse().join("");
+};
+
+// console.log(isPalindrome3("A man, a plan, a canal, Panama")) // true
+// console.log(isPalindrome3("race a car")) // false
+// console.log(isPalindrome3("No 'x' in Nixon")) // true
+
+const twoSum = (arr, target) => {
+  let map = {}
+  let finalArr = []
+  
+  for(let i = 0; i < arr.length; i++){
+    map[arr[i]] = i
+  }
+
+  console.log(map);
+
+  for(let num in map){
+    console.log(map[num]);
+    console.log(map[target - map[num]]);
+    console.log(target - map[num]);
+    if(map[target - map[num]]){
+      
+      finalArr.push(map[map[num]])
+      finalArr.push(map[num])
+    }
+  }
+
+  return finalArr
+}
+
+// console.log(twoSum([2, 3, 5, 10], 13)); //[1,3]
+// console.log(twoSum([23,43,4], 27)); //[0,2]
