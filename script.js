@@ -6000,24 +6000,67 @@ const twoSum = (arr, target) => {
 //   )
 // );
 
-const outer = () => {
-  let num = 0;
-  const inner = () => {
-    num += Math.random() * 100;
-    return num;
+const createCounter = () => {
+  let counter = 0;
+
+  const methods = {
+    increment: () => {
+      counter++;
+    },
+    getValue: () => {
+      return counter;
+    },
   };
-  return inner;
+
+  return methods;
 };
 
-const closure = outer();
+// const counter1 = createCounter();
+// console.log(counter1.getValue());
+// counter1.increment();
+// counter1.increment();
+// console.log(counter1.getValue()); // Expected: 2
 
-console.log(closure());
-console.log(closure());
-console.log(closure());
-console.log(closure());
-console.log(closure());
-console.log(closure());
-console.log(closure());
-console.log(closure());
-console.log(closure());
-console.log(closure());
+// const counter2 = createCounter();
+// console.log(counter2.getValue()); // Expected: 0
+// counter2.increment();
+// console.log(counter2.getValue()); // Expected: 1
+
+// console.log(counter1.getValue()); // Expected: 2 (counter1's value remains independent)
+
+const filterAvailableProducts = (products, maxPrice) => {
+  const filteredProducts = products.filter((item) => {
+    return item.inStock && item.price < maxPrice;
+  });
+  console.log(filteredProducts);
+
+  return filteredProducts.map((item) => {
+    return item.name;
+  });
+};
+
+const inventory = [
+  { id: 1, name: "Laptop", price: 1200, inStock: true },
+  { id: 2, name: "Mouse", price: 25, inStock: true },
+  { id: 3, name: "Keyboard", price: 75, inStock: false },
+  { id: 4, name: "Monitor", price: 300, inStock: true },
+  { id: 5, name: "Webcam", price: 50, inStock: false },
+  { id: 6, name: "Headphones", price: 150, inStock: true },
+  { id: 7, name: "Desk Chair", price: 400, inStock: true },
+];
+
+// Test Case 1: Max price 200
+const affordableAndAvailable = filterAvailableProducts(inventory, 200);
+console.log(affordableAndAvailable);
+// Expected Output: ['Mouse', 'Monitor', 'Headphones']
+// (Laptop is > 200, Keyboard & Webcam are out of stock, Desk Chair is > 200)
+
+// Test Case 2: Max price 50
+const veryAffordable = filterAvailableProducts(inventory, 50);
+console.log(veryAffordable);
+// Expected Output: ['Mouse']
+
+// Test Case 3: Max price 10 (no products meet criteria)
+const superCheap = filterAvailableProducts(inventory, 10);
+console.log(superCheap);
+// Expected Output: []
