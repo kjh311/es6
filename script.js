@@ -5960,28 +5960,64 @@ const isPalindrome3 = (str) => {
 // console.log(isPalindrome3("No 'x' in Nixon")) // true
 
 const twoSum = (arr, target) => {
-  let map = {}
-  let finalArr = []
-  
-  for(let i = 0; i < arr.length; i++){
-    map[arr[i]] = i
+  let map = {};
+  let finalArr = [];
+
+  for (let i = 0; i < arr.length; i++) {
+    map[arr[i]] = i;
   }
 
   console.log(map);
 
-  for(let num in map){
+  for (let num in map) {
     console.log(map[num]);
     console.log(map[target - map[num]]);
     console.log(target - map[num]);
-    if(map[target - map[num]]){
-      
-      finalArr.push(map[map[num]])
-      finalArr.push(map[num])
+    if (map[target - map[num]]) {
+      finalArr.push(map[map[num]]);
+      finalArr.push(map[num]);
     }
   }
 
-  return finalArr
-}
+  return finalArr;
+};
 
 // console.log(twoSum([2, 3, 5, 10], 13)); //[1,3]
 // console.log(twoSum([23,43,4], 27)); //[0,2]
+
+// const countWords = (str) =>
+//   str
+//     .toLowerCase()
+//     .match(/[a-z0-9']+/g)
+//     .reduce((acc, word) => {
+//       acc[word] = (acc[word] || 0) + 1;
+//       return acc;
+//     }, {});
+
+// console.log(
+//   wordCount(
+//     `Now that there is the Tec-9, a crappy spray gun from South Miami. This gun is advertised as the most popular gun in American crime. Do you believe that shit? It actually says that in the little book that comes with it: the most popular gun in American crime. Like they're actually proud of that shit.`
+//   )
+// );
+
+const outer = () => {
+  let num = 0;
+  const inner = () => {
+    num += Math.random() * 100;
+    return num;
+  };
+  return inner;
+};
+
+const closure = outer();
+
+console.log(closure());
+console.log(closure());
+console.log(closure());
+console.log(closure());
+console.log(closure());
+console.log(closure());
+console.log(closure());
+console.log(closure());
+console.log(closure());
+console.log(closure());
